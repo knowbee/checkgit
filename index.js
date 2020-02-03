@@ -1,9 +1,9 @@
 const { readdirSync } = require("fs");
-const { spawn } = require("child_process");
 const term = require("terminal-kit").terminal;
 const fs = require("fs");
 const path = require("path");
 
+term.magenta("Checking for git directories: ");
 /**
  * @param {String} dir
  * @param {Function} done
