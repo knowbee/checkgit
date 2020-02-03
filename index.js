@@ -1,8 +1,6 @@
-const testFolder = "../";
 const { readdirSync } = require("fs");
-
+const { spawn } = require("child_process");
 const term = require("terminal-kit").terminal;
-
 const fs = require("fs");
 const path = require("path");
 
@@ -40,17 +38,12 @@ function checkGit(dir, done) {
   });
 }
 
-checkGit("../", function(err, data) {
+checkGit("../", async function(err, data) {
   if (err) {
     throw err;
   }
-
   term.gridMenu(data, function(error, response) {
-    term("\n").eraseLineAfter.green(
-      "#%s selected: %s (%s,%s)\n",
-      response.selectedIndex,
-      response.selectedText
-    );
+    term("\n").eraseLineAfter.green(response.selectedText);
     process.exit();
   });
 });
