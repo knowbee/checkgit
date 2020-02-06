@@ -1,6 +1,6 @@
 {
   "name": "checkgit",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "List all existing git repositories in a given path on your system",
   "main": "index.js",
   "bin": {

@@ -5,7 +5,7 @@ const path = require("path");
 const helper = require("./lib/helper");
 const ora = require("ora");
 const color = require("chalk");
-const spinner = ora("looking for git directories").start();
+const spinner = ora("looking for git repositories").start();
 
 let choice = process.argv[3];
 let command = process.argv[2];
