@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const { readdirSync } = require("fs");
 const term = require("terminal-kit").terminal;
 const fs = require("fs");
