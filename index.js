@@ -2,12 +2,12 @@ const { readdirSync } = require("fs");
 const term = require("terminal-kit").terminal;
 const fs = require("fs");
 const path = require("path");
+const helper = require("./lib/helper");
 
-const cli = require("commander");
-const checkgit = new cli.Command();
 let choice = process.argv[3];
+let command = process.argv[2];
 
-if (!choice) {
+if (!command) {
   console.log("");
   console.log("How to use checkgit:");
   console.log("");
@@ -17,22 +17,9 @@ if (!choice) {
   console.log("  $ checkgit -nogit E:");
   process.exit();
 } else {
-  !choice.includes(":\\") ? (choice = choice.split(":")[0] + ":\\") : choice;
+  helper();
 }
 
-function helper() {
-  checkgit
-    .version("1.0.0")
-    .option("-g, --git", "check for git directories")
-    .option("-ng, --nogit", "check for non git directories")
-    .parse(process.argv);
-  checkgit.on("--help", function() {
-    console.log("How to use checkgit:");
-    console.log("  $ checkgit --help");
-    console.log("  $ checkgit -h");
-    console.log("  $ checkgit -g");
-  });
-}
 /**
  * @param {String} dir
  * @param {Function} done
@@ -67,21 +54,26 @@ function checkGit(dir, done) {
   });
 }
 
-process.argv.slice(2).forEach(function(cmd) {
-  if (cmd === "-g" || cmd === "--git") {
-    checkGit(choice, async function(err, data) {
-      if (data.length > 0) {
-        term.magenta("Checking for git directories...");
-        if (err) {
-          throw err;
+if (choice) {
+  helper();
+  !choice.includes(":\\") ? (choice = choice.split(":")[0] + ":\\") : choice;
+
+  process.argv.slice(2).forEach(function(cmd) {
+    if (cmd === "-g" || cmd === "--git") {
+      checkGit(choice, async function(err, data) {
+        if (data.length > 0) {
+          term.magenta("Checking for git directories...");
+          if (err) {
+            throw err;
+          }
+          term.gridMenu(data, function(error, response) {
+            term("\n").eraseLineAfter.green(response.selectedText);
+            process.exit();
+          });
+        } else {
+          term.red(`no git dirs found under ${choice}`);
         }
-        term.gridMenu(data, function(error, response) {
-          term("\n").eraseLineAfter.green(response.selectedText);
-          process.exit();
-        });
-      } else {
-        term.red(`no git dirs found under ${choice}`);
-      }
-    });
-  }
-});
+      });
+    }
+  });
+}
