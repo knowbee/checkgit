@@ -11,5 +11,8 @@
   "license": "MIT",
   "dependencies": {
     "terminal-kit": "^1.32.3"
+  },
+  "devDependencies": {
+    "commander": "^4.1.1"
   }
 }

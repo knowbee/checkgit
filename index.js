@@ -3,7 +3,36 @@ const term = require("terminal-kit").terminal;
 const fs = require("fs");
 const path = require("path");
 
-term.magenta("Checking for git directories: ");
+const cli = require("commander");
+const checkgit = new cli.Command();
+let choice = process.argv[3];
+
+if (!choice) {
+  console.log("");
+  console.log("How to use checkgit:");
+  console.log("");
+  console.log("  $ checkgit --help");
+  console.log("  $ checkgit -h");
+  console.log("  $ checkgit -g E:");
+  console.log("  $ checkgit -nogit E:");
+  process.exit();
+} else {
+  !choice.includes(":\\") ? (choice = choice.split(":")[0] + ":\\") : choice;
+}
+
+function helper() {
+  checkgit
+    .version("1.0.0")
+    .option("-g, --git", "check for git directories")
+    .option("-ng, --nogit", "check for non git directories")
+    .parse(process.argv);
+  checkgit.on("--help", function() {
+    console.log("How to use checkgit:");
+    console.log("  $ checkgit --help");
+    console.log("  $ checkgit -h");
+    console.log("  $ checkgit -g");
+  });
+}
 /**
  * @param {String} dir
  * @param {Function} done
@@ -38,12 +67,21 @@ function checkGit(dir, done) {
   });
 }
 
-checkGit("../", async function(err, data) {
-  if (err) {
-    throw err;
+process.argv.slice(2).forEach(function(cmd) {
+  if (cmd === "-g" || cmd === "--git") {
+    checkGit(choice, async function(err, data) {
+      if (data.length > 0) {
+        term.magenta("Checking for git directories...");
+        if (err) {
+          throw err;
+        }
+        term.gridMenu(data, function(error, response) {
+          term("\n").eraseLineAfter.green(response.selectedText);
+          process.exit();
+        });
+      } else {
+        term.red(`no git dirs found under ${choice}`);
+      }
+    });
   }
-  term.gridMenu(data, function(error, response) {
-    term("\n").eraseLineAfter.green(response.selectedText);
-    process.exit();
-  });
 });
