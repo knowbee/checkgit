@@ -1,5 +1,5 @@
 {
-  "name": "checkgit",
+  "name": "@knowbee/checkgit",
   "version": "1.0.0",
   "description": "List all existing git repositories in a given path on your system",
   "main": "index.js",

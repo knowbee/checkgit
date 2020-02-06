@@ -12,13 +12,13 @@ List all existing git repositories in a given path on your system
 ## Install
 
 ```cli
-npm install -g checkgit
+npm install -g @knowbee/checkgit
 ```
 
 or
 
 ```cli
-yarn global add checkgit
+yarn global add @knowbee/checkgit
 ```
 
 ## Using checkgit CLI
@@ -26,7 +26,7 @@ yarn global add checkgit
 #### Command Line
 
 ```cli
-$ checkgit <options>
+$ checkgit <options> <path>
 $ checkgit -g e:
 ```
 
