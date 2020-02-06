@@ -7,7 +7,7 @@ const path = require("path");
 const helper = require("./lib/helper");
 const ora = require("ora");
 const color = require("chalk");
-const spinner = ora("looking for git repositories").start();
+const spinner = ora("looking for git repositories");
 
 let choice = process.argv[3];
 let command = process.argv[2];
@@ -31,6 +31,7 @@ if (!command) {
  * @param {Function} done
  */
 function checkGit(dir, done) {
+  spinner.start();
   let results = [];
 
   fs.readdir(dir, function(err, list) {
