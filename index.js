@@ -80,7 +80,7 @@ if (choice) {
             process.exit();
           });
         } else {
-          term.red(`no git dirs found under ${choice}`);
+          term.red(`no git repos found under ${choice}`);
         }
       });
     }
