@@ -3,6 +3,9 @@ const term = require("terminal-kit").terminal;
 const fs = require("fs");
 const path = require("path");
 const helper = require("./lib/helper");
+const ora = require("ora");
+const color = require("chalk");
+const spinner = ora("looking for git directories").start();
 
 let choice = process.argv[3];
 let command = process.argv[2];
@@ -22,6 +25,7 @@ if (!command) {
 
 /**
  * @param {String} dir
+ * @param {Boolean} git
  * @param {Function} done
  */
 function checkGit(dir, done) {
@@ -57,12 +61,17 @@ function checkGit(dir, done) {
 if (choice) {
   helper();
   !choice.includes(":\\") ? (choice = choice.split(":")[0] + ":\\") : choice;
-
   process.argv.slice(2).forEach(function(cmd) {
     if (cmd === "-g" || cmd === "--git") {
       checkGit(choice, async function(err, data) {
         if (data.length > 0) {
-          term.magenta("Checking for git directories...");
+          console.log("\n");
+          console.log(
+            `found ${color.green(data.length)} git repos under ${color.yellow(
+              choice
+            )}`
+          );
+          spinner.stop();
           if (err) {
             throw err;
           }

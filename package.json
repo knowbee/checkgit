@@ -1,18 +1,25 @@
 {
   "name": "checkgit",
   "version": "0.0.1",
-  "description": "",
+  "description": "List all existing git repositories in a given path on your system",
   "main": "index.js",
+  "bin": {
+    "checkgit": "./index.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nyc mocha ./test/* --exit",
+    "lint": "eslint .",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "fix-lint": "eslint . --fix"
   },
   "keywords": [],
   "author": "Igwaneza Bruce <knowbeeinc@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "chalk": "^3.0.0",
+    "commander": "^4.1.1",
+    "ora": "^4.0.3",
     "terminal-kit": "^1.32.3"
   },
-  "devDependencies": {
-    "commander": "^4.1.1"
-  }
+  "devDependencies": {}
 }
