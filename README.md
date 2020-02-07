@@ -28,6 +28,7 @@ yarn global add @knowbee/checkgit
 ```cli
 $ checkgit <options> <path>
 $ checkgit -g e:
+$ checkgit -g ../
 ```
 
 ## Options:
