@@ -19,7 +19,7 @@ if (!command) {
   console.log("  $ checkgit --help");
   console.log("  $ checkgit -h");
   console.log("  $ checkgit -g E:");
-  console.log("  $ checkgit -nogit E:");
+  console.log("  $ checkgit -g ../");
   process.exit();
 } else {
   helper();
