@@ -62,7 +62,9 @@ function checkGit(dir, done) {
 
 if (choice) {
   helper();
-  !choice.includes(":\\") ? (choice = choice.split(":")[0] + ":\\") : choice;
+  !choice.startsWith(".") && !choice.includes(":\\")
+    ? (choice = choice.split(":")[0] + ":\\")
+    : choice;
   process.argv.slice(2).forEach(function(cmd) {
     if (cmd === "-g" || cmd === "--git") {
       checkGit(choice, async function(err, data) {
