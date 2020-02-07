@@ -34,5 +34,13 @@
     "check git",
     "git repos",
     "list git"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/knowbee/checkgit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/knowbee/checkgit/issues"
+  },
+  "homepage": "https://github.com/knowbee/checkgit#readme"
 }
