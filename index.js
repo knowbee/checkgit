@@ -27,7 +27,6 @@ if (!command) {
 
 /**
  * @param {String} dir
- * @param {Boolean} git
  * @param {Function} done
  */
 function checkGit(dir, done) {
@@ -68,6 +67,7 @@ if (choice) {
     if (cmd === "-g" || cmd === "--git") {
       checkGit(choice, async function(err, data) {
         if (data.length > 0) {
+          spinner.succeed("done");
           console.log("\n");
           console.log(
             `found ${color.green(data.length)} git repos under ${color.yellow(

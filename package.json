@@ -12,7 +12,6 @@
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "fix-lint": "eslint . --fix"
   },
-  "keywords": [],
   "author": "Igwaneza Bruce <knowbeeinc@gmail.com>",
   "license": "MIT",
   "dependencies": {
@@ -29,5 +28,11 @@
     "eslint-plugin-import": "^2.20.1",
     "mocha": "^7.0.1",
     "nyc": "^15.0.0"
-  }
+  },
+  "keywords": [
+    "git",
+    "check git",
+    "git repos",
+    "list git"
+  ]
 }
