@@ -64,7 +64,7 @@ function checkGit(dir, done) {
 if (choice) {
   helper();
   if (os.isWindows) {
-    !choice.startsWith(".") && !choice.includes(":\\")
+    !choice.startsWith(".") && !choice.includes(":\\") && choice.endsWith(":")
       ? (choice = choice.split(":")[0] + ":\\")
       : choice;
   } else {
