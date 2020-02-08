@@ -403,6 +403,11 @@ check-error@^1.0.2:
   resolved "https://registry.yarnpkg.com/check-error/-/check-error-1.0.2.tgz#574d312edd88bb5dd8912e9286dd6c0aed4aac82"
   integrity sha1-V00xLt2Iu13YkS6Sht1sCu1KrII=
 
+check-os@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/check-os/-/check-os-1.0.1.tgz#b5a9ba1ab798a2dd84773b2cb1bcc93f7fdcc1d1"
+  integrity sha512-zD0vrVDWWPBEzFByVBEUgembWHxdl/s1Ze0NeKQxlNTfmo3QpKl0nkra5fKpTsKOL9YWNx5bP1D39FF7XbCPJg==
+
 chokidar@3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.3.0.tgz#12c0714668c55800f659e262d4962a97faf554a6"
