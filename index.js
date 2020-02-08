@@ -7,7 +7,8 @@ const path = require("path");
 const helper = require("./lib/helper");
 const ora = require("ora");
 const color = require("chalk");
-const spinner = ora("looking for git repositories");
+const spinner = ora("Looking for git repositories");
+const os = require("check-os");
 
 let choice = process.argv[3];
 let command = process.argv[2];
@@ -62,9 +63,13 @@ function checkGit(dir, done) {
 
 if (choice) {
   helper();
-  !choice.startsWith(".") && !choice.includes(":\\")
-    ? (choice = choice.split(":")[0] + ":\\")
-    : choice;
+  if (os.isWindows) {
+    !choice.startsWith(".") && !choice.includes(":\\") && choice.endsWith(":")
+      ? (choice = choice.split(":")[0] + ":\\")
+      : choice;
+  } else {
+    choice = choice;
+  }
   process.argv.slice(2).forEach(function(cmd) {
     if (cmd === "-g" || cmd === "--git") {
       checkGit(choice, async function(err, data) {
@@ -72,7 +77,7 @@ if (choice) {
           spinner.succeed("done");
           console.log("\n");
           console.log(
-            `found ${color.green(data.length)} git repos under ${color.yellow(
+            `Found ${color.green(data.length)} git repos under ${color.yellow(
               choice
             )}`
           );
