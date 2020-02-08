@@ -64,8 +64,8 @@ function checkGit(dir, done) {
 if (choice) {
   helper();
   if (os.isWindows) {
-    !choice.startsWith(".") && !choice.includes(":\\") && choice.endsWith(":")
-      ? (choice = choice.split(":")[0] + ":\\")
+    (!choice.startsWith(".") && !choice.includes(":\\")) || choice.endsWith(":")
+      ? (choice = choice.replace(/:/gi, "\\").replace("\\", ":\\"))
       : choice;
   } else {
     choice = choice;
@@ -73,24 +73,27 @@ if (choice) {
   process.argv.slice(2).forEach(function(cmd) {
     if (cmd === "-g" || cmd === "--git") {
       checkGit(choice, async function(err, data) {
-        if (data.length > 0) {
-          spinner.succeed("done");
-          console.log("\n");
-          console.log(
-            `Found ${color.green(data.length)} git repos under ${color.yellow(
-              choice
-            )}`
-          );
-          spinner.stop();
-          if (err) {
-            throw err;
+        try {
+          if (data.length > 0) {
+            spinner.succeed("done");
+            console.log("\n");
+            console.log(
+              `Found ${color.green(data.length)} git repos under ${color.yellow(
+                choice
+              )}`
+            );
+            spinner.stop();
+
+            term.gridMenu(data, function(error, response) {
+              term("\n").eraseLineAfter.green(response.selectedText);
+              process.exit();
+            });
+          } else {
+            term.red(`no git repos found under ${choice}`);
           }
-          term.gridMenu(data, function(error, response) {
-            term("\n").eraseLineAfter.green(response.selectedText);
-            process.exit();
-          });
-        } else {
-          term.red(`no git repos found under ${choice}`);
+        } catch (error) {
+          spinner.stop();
+          term.red(`Invalid path`);
         }
       });
     }
