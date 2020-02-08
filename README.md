@@ -1,6 +1,7 @@
 # checkgit
 
 [![Build Status](https://travis-ci.org/knowbee/checkgit.svg?branch=master)](https://travis-ci.org/knowbee/checkgit)
+[![Npm Weekly Downloads](https://badgen.net/npm/dw/@knowbee/checkgit)](https://badgen.net/npm/dw/@knowbee/checkgit)
 [![Dependency Status](https://david-dm.org/knowbee/checkgit.svg)](https://david-dm.org/knowbee/checkgit)
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
 [![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
