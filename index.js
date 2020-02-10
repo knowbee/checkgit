@@ -86,6 +86,7 @@ if (choice) {
 
             term.gridMenu(data, function(error, response) {
               term("\n").eraseLineAfter.green(response.selectedText);
+              console.log("\n");
               process.exit();
             });
           } else {
