@@ -98,6 +98,8 @@ if (choice) {
         } catch (error) {
           spinner.stop();
           term.red(`Invalid path`);
+          console.log("\n");
+          process.exit();
         }
       });
     }
