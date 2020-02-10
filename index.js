@@ -74,7 +74,7 @@ if (choice) {
     if (cmd === "-g" || cmd === "--git") {
       checkGit(choice, async function(err, data) {
         try {
-          if (data.length > 0) {
+          if (data && data.length > 0) {
             spinner.succeed("done");
             console.log("\n");
             console.log(
@@ -90,7 +90,10 @@ if (choice) {
               process.exit();
             });
           } else {
+            spinner.stop();
             term.red(`no git repos found under ${choice}`);
+            console.log("\n");
+            process.exit();
           }
         } catch (error) {
           spinner.stop();
