@@ -14,12 +14,14 @@
   },
   "author": "Igwaneza Bruce <knowbeeinc@gmail.com>",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "chalk": "^3.0.0",
     "check-os": "^1.0.1",
     "commander": "^4.1.1",
     "ora": "^4.0.3",
-    "terminal-kit": "^1.32.3",
+    "terminal-kit": "^1.32.3"
+  },
+  "devDependencies": {
     "chai": "^4.2.0",
     "coveralls": "^3.0.9",
     "eslint": "^6.8.0",
