@@ -89,7 +89,7 @@ if (choice) {
               process.exit();
             });
           } else {
-            term.red(`no git repos found under ${choice}`);
+            term.red(`No git repositories found under ${choice}`);
           }
         } catch (error) {
           spinner.stop();
