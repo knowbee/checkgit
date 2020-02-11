@@ -74,7 +74,7 @@ if (choice) {
     if (cmd === "-g" || cmd === "--git") {
       checkGit(choice, async function(err, data) {
         try {
-          if (data.length > 0) {
+          if (data && data.length > 0) {
             spinner.succeed("done");
             console.log("\n");
             console.log(
@@ -86,14 +86,24 @@ if (choice) {
 
             term.gridMenu(data, function(error, response) {
               term("\n").eraseLineAfter.green(response.selectedText);
+              console.log("\n");
               process.exit();
             });
           } else {
+<<<<<<< HEAD
             term.red(`No git repositories found under ${choice}`);
+=======
+            spinner.stop();
+            term.red(`no git repos found under ${choice}`);
+            console.log("\n");
+            process.exit();
+>>>>>>> f7c6942492afdea179635d63964666c6f921364f
           }
         } catch (error) {
           spinner.stop();
           term.red(`Invalid path`);
+          console.log("\n");
+          process.exit();
         }
       });
     }
