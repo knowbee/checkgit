@@ -1,6 +1,6 @@
 {
   "name": "@knowbee/checkgit",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "List all existing git repositories in a given path on your system",
   "main": "index.js",
   "bin": {
